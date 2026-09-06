@@ -50,8 +50,8 @@ export const register = async (req, res) => {
     // settings based on the environment (production or development)
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+      secure: process.env.VERCEL_ENV === "production",
+      sameSite: process.env.VERCEL_ENV === "production" ? "none" : "strict",
       maxAge: 3600000, // we sets 1 hour for the cookie to expire after 1 hour
     });
 
@@ -110,8 +110,8 @@ export const login = async (req, res) => {
     // settings based on the environment (production or development)
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+      secure: process.env.VERCEL_ENV === "production",
+      sameSite: process.env.VERCEL_ENV === "production" ? "none" : "strict",
       maxAge: 3600000, // we sets 1 hour for the cookie to expire after 1 hour
     });
 
@@ -130,8 +130,8 @@ export const logout = (req, res) => {
     // as when it was set
     res.clearCookie("token", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+      secure: process.env.VERCEL_ENV === "production",
+      sameSite: process.env.VERCEL_ENV === "production" ? "none" : "strict",
     });
 
     return res.json({ success: true, message: "Logout successful" });
